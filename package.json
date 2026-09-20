@@ -1,0 +1,12 @@
+{
+  "name": "studio-light-planner",
+  "version": "1.0.0",
+  "private": true,
+  "description": "摄影棚排灯：可拖拽的灯光/支架/背景板/走线布局工具，含冲突检查、多方案、持久化与多标签页冲突检测",
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8741",
+    "test": "node --test tests/core.test.mjs",
+    "test:smoke": "node tests/smoke.mjs && node tests/smoke2.mjs"
+  }
+}

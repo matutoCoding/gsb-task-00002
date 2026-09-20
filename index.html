@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>摄影棚排灯</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">摄影棚排灯</div>
+    <div id="plan-tabs" class="plan-tabs"></div>
+    <div class="top-actions">
+      <span id="presence" class="presence" title="同时打开本页的其他标签页"></span>
+      <button id="btn-add-plan" type="button">＋ 新方案</button>
+      <label class="switch"><input type="checkbox" id="snap-toggle" checked /> 网格吸附</label>
+    </div>
+  </header>
+
+  <div id="main">
+    <aside id="palette" class="panel">
+      <h3>设备</h3>
+      <button data-add="light">💡 加一盏灯</button>
+      <button data-add="stand">三脚架</button>
+      <button data-add="background">背景板</button>
+      <button data-add="outlet">插座（放墙边）</button>
+      <div class="hint">拖动画布上的对象可移动；拖灯上的手柄可转方向。</div>
+      <h3>选中对象</h3>
+      <div id="inspector" class="inspector"><p class="muted">未选中</p></div>
+    </aside>
+
+    <section id="stage-wrap">
+      <div id="checking" class="checking hidden">检查中…</div>
+      <svg id="stage" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div id="legend">
+        <span><i class="dot err"></i>未处理</span>
+        <span><i class="dot waived"></i>暂时绕开</span>
+        <span><i class="dot ok"></i>已处理</span>
+        <span><i class="dot hint"></i>联动建议</span>
+      </div>
+    </section>
+
+    <aside id="sidebar" class="panel">
+      <div id="summary" class="summary"></div>
+      <div class="issue-tabs">
+        <button class="itab active" data-itab="open">问题</button>
+        <button class="itab" data-itab="waived">绕开</button>
+        <button class="itab" data-itab="resolved">已处理</button>
+        <button class="itab" data-itab="suggest">联动建议</button>
+      </div>
+      <ul id="issue-list" class="issue-list"></ul>
+      <div class="side-actions">
+        <button id="btn-export" type="button">导出方案 JSON</button>
+      </div>
+    </aside>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <div id="conflict-modal" class="modal hidden">
+    <div class="modal-card">
+      <h3>该对象在另一个标签页被改动</h3>
+      <p id="conflict-detail"></p>
+      <div class="modal-actions">
+        <button id="conflict-keep-mine" class="primary">保留我的版本</button>
+        <button id="conflict-use-theirs">采用对方版本</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
