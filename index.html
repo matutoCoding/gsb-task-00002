@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>摄影棚排灯台 · Studio Lighting Planner</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <span class="brand-name">排灯台</span>
+    </div>
+    <nav id="plan-tabs" class="plan-tabs"></nav>
+    <div class="top-actions">
+      <span id="save-state" class="save-state" title="自动保存在本浏览器">未更改</span>
+      <button id="btn-save" class="btn primary">立即保存</button>
+      <button id="btn-report" class="btn">进场检查单</button>
+      <div class="menu-wrap">
+        <button id="btn-menu" class="btn ghost">⋯</button>
+        <div id="menu-pop" class="menu-pop hidden">
+          <button data-action="copy-plan">复制当前摆法</button>
+          <button data-action="reset-plan">恢复默认棚位</button>
+          <button data-action="add-bulk">压力测试：再加 20 盏灯</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="main">
+    <aside id="toolbox">
+      <div class="toolbox-title">设备</div>
+      <button class="tool" data-add="light"><span class="ico">💡</span>主灯 / 补光</button>
+      <button class="tool" data-add="stand"><span class="ico">🔩</span>独立支架</button>
+      <button class="tool" data-add="backdrop"><span class="ico">🟫</span>背景板</button>
+      <button class="tool" data-add="cable"><span class="ico">〰️</span>走线</button>
+      <div class="toolbox-hint">点击加入棚内，再拖动定位；拖灯上的插头可改插座，拖灯上方圆点可转方向。</div>
+    </aside>
+
+    <section id="stage-wrap">
+      <div id="viewport">
+        <div id="world">
+          <svg id="overlay-svg" preserveAspectRatio="none"></svg>
+          <div id="layer-beams"></div>
+          <div id="layer-cables"></div>
+          <div id="layer-items"></div>
+        </div>
+      </div>
+      <div id="statusbar">
+        <span id="hint-text">拖动设备改位置 · 拖圆点转灯向 · Shift 拖动关闭网格吸附</span>
+        <span class="spacer"></span>
+        <span id="check-state"></span>
+        <span id="item-count"></span>
+      </div>
+    </section>
+
+    <aside id="panel">
+      <div id="panel-issues" class="panel-block">
+        <div class="panel-head"><h3>冲突与提醒</h3><span id="issue-summary" class="summary"></span></div>
+        <ul id="issue-list" class="issue-list"></ul>
+      </div>
+      <div id="panel-inspector" class="panel-block">
+        <div class="panel-head"><h3>属性</h3></div>
+        <div id="inspector-body"></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div id="conflict-modal" class="modal hidden">
+  <div class="modal-card">
+    <h3>另一个页面改了同一处</h3>
+    <p id="conflict-detail"></p>
+    <div class="modal-actions">
+      <button id="btn-conflict-keep" class="btn primary">用我的版本覆盖</button>
+      <button id="btn-conflict-theirs" class="btn">采用对方版本</button>
+    </div>
+  </div>
+</div>
+
+<div id="report-modal" class="modal hidden">
+  <div class="modal-card wide">
+    <h3 id="report-title">进场检查单</h3>
+    <div id="report-body"></div>
+    <div class="modal-actions right">
+      <button id="btn-report-close" class="btn">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="js/state.js"></script>
+<script src="js/check.js"></script>
+<script src="js/render.js"></script>
+<script src="js/interaction.js"></script>
+<script src="js/panel.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
